@@ -23,17 +23,17 @@ def predict_co2(aircraft_type, origin, destination):
     if distance_km is None:
         return "Error in distance calculation."
 
-    # Fetch emission factor for the given aircraft type
+    
     emission_factor = aircraft_emission_factors.get(aircraft_type, None)
     if emission_factor is None:
         return "Invalid aircraft type."
 
-    # Estimate CO2 emissions (this is a simple multiplication of distance and emission factor)
+    
     predicted_emission = distance_km * emission_factor
     
     return predicted_emission
 
-# Example usage (in case you want to test it independently)
+
 if __name__ == "__main__":
     aircraft = "Boeing_747"
     origin_city = "Mumbai"
