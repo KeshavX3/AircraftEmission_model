@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CO2 Emission Predictor</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center">CO2 Emission Predictor</h2>
+        <form action="/predict" method="POST" class="mt-4">
+            <div class="form-group">
+                <label for="aircraft">Aircraft Type</label>
+                <select class="form-control" id="aircraft" name="aircraft" required>
+                    <option value="Boeing_747">Boeing 747</option>
+                    <option value="Airbus_A380">Airbus A380</option>
+                    <!-- Add more aircraft types as needed -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="origin">Origin City</label>
+                <input type="text" class="form-control" id="origin" name="origin" placeholder="Enter origin city" required>
+            </div>
+            <div class="form-group">
+                <label for="destination">Destination City</label>
+                <input type="text" class="form-control" id="destination" name="destination" placeholder="Enter destination city" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Predict CO2 Emission</button>
+        </form>
+
+        {% if prediction %}
+        <div class="alert alert-info mt-4">
+            <h4>Prediction Result</h4>
+            <p>Aircraft: <strong>{{ aircraft }}</strong></p>
+            <p>From: <strong>{{ origin }}</strong> To: <strong>{{ destination }}</strong></p>
+            <p>Predicted CO2 Emission: <strong>{{ prediction }} tons</strong></p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
