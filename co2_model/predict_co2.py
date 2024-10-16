@@ -2,8 +2,8 @@ from map_api import get_distance
 
 
 aircraft_emission_factors = {
-    'Boeing_747': 0.18,   # CO2 per kilometer
-    'Airbus_A380': 0.2    # CO2 per kilometer
+    'Boeing_747': 0.18,   
+    'Airbus_A380': 0.2    
 }
 
 def predict_co2(aircraft_type, origin, destination):

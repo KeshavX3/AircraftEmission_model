@@ -10,15 +10,15 @@ def index():
 @app.route('/predict', methods=['POST'])
 def predict():
     if request.method == 'POST':
-        # Get input from the form
+        
         aircraft_type = request.form['aircraft']
         origin = request.form['origin']
         destination = request.form['destination']
         
-        # Get the CO2 prediction
+        
         predicted_emission = predict_co2(aircraft_type, origin, destination)
         
-        # Pass the result back to the webpage
+      
         return render_template('index.html', 
                                aircraft=aircraft_type, 
                                origin=origin, 

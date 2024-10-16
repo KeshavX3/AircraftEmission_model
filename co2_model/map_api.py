@@ -1,8 +1,8 @@
 import requests
 
-# Nominatim API URL for geocoding
+
 NOMINATIM_API_URL = "https://nominatim.openstreetmap.org/search"
-# OSRM API URL for route distance calculation
+
 OSRM_API_URL = "http://router.project-osrm.org/route/v1/driving"
 
 def get_coordinates(city_name):
@@ -45,14 +45,14 @@ def get_distance(origin, destination):
     Returns:
     float: Distance between the two cities in kilometers or None if an error occurred.
     """
-    # Get coordinates for the origin and destination
+    
     origin_coords = get_coordinates(origin)
     destination_coords = get_coordinates(destination)
     
-    print(f"Origin coordinates: {origin_coords}")  # Debugging
-    print(f"Destination coordinates: {destination_coords}")  # Debugging
+    print(f"Origin coordinates: {origin_coords}")  
+    print(f"Destination coordinates: {destination_coords}")  
     
-    # Check if both coordinates are valid
+    
     if origin_coords is None:
         print(f"Error: Unable to find coordinates for origin: {origin}")
         return None
@@ -60,20 +60,20 @@ def get_distance(origin, destination):
         print(f"Error: Unable to find coordinates for destination: {destination}")
         return None
 
-    # Prepare the coordinates for the API request
-    origin_str = f"{origin_coords[1]},{origin_coords[0]}"  # lon,lat
-    destination_str = f"{destination_coords[1]},{destination_coords[0]}"  # lon,lat
+    
+    origin_str = f"{origin_coords[1]},{origin_coords[0]}"  
+    destination_str = f"{destination_coords[1]},{destination_coords[0]}"  
 
     try:
-        # Send a request to OSRM API for the distance
+        
         response = requests.get(f"{OSRM_API_URL}/{origin_str};{destination_str}", params={'overview': 'false'})
-        print(f"Response from OSRM API: {response.text}")  # Debugging
+        print(f"Response from OSRM API: {response.text}") 
 
         if response.status_code == 200:
             data = response.json()
             if 'routes' in data and len(data['routes']) > 0:
                 distance_meters = data['routes'][0]['distance']
-                distance_km = distance_meters / 1000  # Convert meters to kilometers
+                distance_km = distance_meters / 1000  
                 return distance_km
             else:
                 print("No routes found in the response.")
